@@ -1,9 +1,17 @@
 const bcrypt = require('bcrypt');
 const jwt=require('jsonwebtoken');
-
+var validator = require("email-validator");
 const User=require('../models/User')
 
 exports.signup = (req, res, next) => {
+  const emailValidation=validator.validate("test@email.com");
+  if(!emailValidation){
+    res.writeHead(400,'Veuillez écrire une adresse mail valide!',{
+      "content-type": "application/json",
+    });
+    res.end('Le format est invalide.')
+  }
+  else{
     bcrypt.hash(req.body.password, 10)
       .then(hash => {
         const user = new User({
@@ -16,7 +24,7 @@ exports.signup = (req, res, next) => {
       })
       .catch(error => res.status(500).json({ error }));
   };
-  
+};
 exports.login = (req, res, next) => {
     User.findOne({ email: req.body.email })
       .then(user => {

@@ -2,6 +2,7 @@ const mongoose=require('mongoose');
 const bodyParser=require('body-parser');
 const express=require('express');
 const app=express();
+const helmet = require("helmet");
 
 mongoose.connect('mongodb+srv://younesbou:MINMPBDehQEoDRj9@cluster0.gx1hz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
     {
@@ -21,6 +22,10 @@ mongoose.connect('mongodb+srv://younesbou:MINMPBDehQEoDRj9@cluster0.gx1hz.mongod
     });
 
     app.use(bodyParser.json());
+    app.use(helmet());
+    app.use('/images',express.static(path.join(__dirname,'images')));
+    app.use('/api/auth', userRoutes);
+    app.use('/api/sauces',stuffRoutes);
 
 
 
