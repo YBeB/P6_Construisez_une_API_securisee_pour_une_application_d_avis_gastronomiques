@@ -6,7 +6,6 @@ const helmet = require("helmet");
 const path=require("path");
 const saucesRoutes = require("./routes/sauces");
 const userRoutes = require("./routes/user");
-const Sauce = require("./models/Sauce");
 
 mongoose.connect('mongodb+srv://younesbou:MINMPBDehQEoDRj9@cluster0.gx1hz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
     {
@@ -29,7 +28,7 @@ mongoose.connect('mongodb+srv://younesbou:MINMPBDehQEoDRj9@cluster0.gx1hz.mongod
     app.use(helmet());
     app.use('/images',express.static(path.join(__dirname,'images')));
     app.use('/api/auth', userRoutes);
-    app.use('/api/sauces',stuffRoutes);
+    app.use('/api/sauces',saucesRoutes);
 
 
 
