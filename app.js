@@ -3,6 +3,10 @@ const bodyParser=require('body-parser');
 const express=require('express');
 const app=express();
 const helmet = require("helmet");
+const path=require("path");
+const saucesRoutes = require("./routes/sauces");
+const userRoutes = require("./routes/user");
+const Sauce = require("./models/Sauce");
 
 mongoose.connect('mongodb+srv://younesbou:MINMPBDehQEoDRj9@cluster0.gx1hz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
     {
