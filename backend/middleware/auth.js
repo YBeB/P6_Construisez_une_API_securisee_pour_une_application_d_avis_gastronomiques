@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken');
-
+const jwt = require('jsonwebtoken')
+//Permet d'attribué un Token
 module.exports = (req, res, next) => {
     try {
         const token = req.headers.authorization.split(' ')[1]
