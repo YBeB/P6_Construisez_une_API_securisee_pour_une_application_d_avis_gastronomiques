@@ -10,7 +10,7 @@ require('dotenv').config({ path: process.cwd() + '/.env' });
 
 
 
-mongoose.connect('mongodb+srv://younesbou:MINMPBDehQEoDRj9@cluster0.gx1hz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://younesbou:JZrT8v2jWI9Et7NE@cluster0.gx1hz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
