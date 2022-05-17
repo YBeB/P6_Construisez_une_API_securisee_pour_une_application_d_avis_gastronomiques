@@ -4,8 +4,11 @@ const express=require('express');
 const app=express();
 const helmet = require("helmet");
 const path=require("path");
-const saucesRoutes = require("./routes/sauces");
+const saucesRoutes = require("./routes/sauce");
 const userRoutes = require("./routes/user");
+require('dotenv').config({ path: process.cwd() + '/.env' });
+
+
 
 mongoose.connect('mongodb+srv://younesbou:MINMPBDehQEoDRj9@cluster0.gx1hz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
     {
@@ -25,10 +28,13 @@ mongoose.connect('mongodb+srv://younesbou:MINMPBDehQEoDRj9@cluster0.gx1hz.mongod
     });
 
     app.use(bodyParser.json());
-    app.use(helmet());
     app.use('/images',express.static(path.join(__dirname,'images')));
-    app.use('/api/auth', userRoutes);
     app.use('/api/sauces',saucesRoutes);
+    app.use(helmet({
+        crossOriginResourcePolicy: false,
+      }))
+    app.use('/api/auth', userRoutes);
+
 
 
 

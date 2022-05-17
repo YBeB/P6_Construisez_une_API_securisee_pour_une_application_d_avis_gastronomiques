@@ -8,8 +8,8 @@ description:{type:String,require:true},
 mainPepper:{type:String,require:true},
 imageUrl:{type:String,require:true},
 heat:{type:Number,require:true},
-likes:{types:Number},
-dislikes:{types:Number},
+likes: { type: Number, default: 0 },
+dislikes: { type: Number, default: 0 },
 usersLiked:{types:[String]},
 usersDisliked:{types:[String]}
 });
