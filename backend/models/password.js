@@ -8,6 +8,6 @@ passwordSchema
 .has().lowercase()                              // Must have lowercase letters
 .has().digits(2)                                // Must have at least 2 digits
 .has().not().spaces()                           // Should not have spaces
-.is().not().oneOf(['Passw0rd', 'Password123','azerty','123456789','azert123']); // Blacklist these values
+.is().not().oneOf(['Passw0rd', 'Password123','azerty','123456789','azerty123']); // Blacklist these values
 
 module.exports =passwordSchema
