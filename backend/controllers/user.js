@@ -32,7 +32,7 @@ exports.login = (req, res, next) => {
         .then(user => {
             if (!user) {
                 res.writeHead(
-                    500,
+                    401,
                     "Utilisateur inexistant",
                     {
                         "content-type": "application/json",
@@ -45,7 +45,7 @@ exports.login = (req, res, next) => {
                     .then(valid => {
                         if (!valid) {
                             res.writeHead(
-                                500,
+                                401,
                                 "Le mot de passe est incorrect",
                                 {
                                     "content-type": "application/json",
@@ -58,7 +58,7 @@ exports.login = (req, res, next) => {
                                 userId: user._id,
                                 token: jwt.sign(
                                     { userId: user._id },
-                                    `${process.env.RND_TKN}`,
+                                    `${process.env.SECRET_TOKEN}`,
                                     { expiresIn: '24h' }
                                 )
                             })
@@ -66,7 +66,7 @@ exports.login = (req, res, next) => {
                     })
                     .catch(error => {
                         res.writeHead(
-                            500,
+                            401,
                             "Le mot de passe est incorrect",
                             {
                                 "content-type": "application/json",
@@ -78,7 +78,7 @@ exports.login = (req, res, next) => {
         })
         .catch(error => {
             res.writeHead(
-                500,
+                401,
                 "Utilisateur inexistant",
                 {
                     "content-type": "application/json",
