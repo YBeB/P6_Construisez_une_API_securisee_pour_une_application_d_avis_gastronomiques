@@ -1,5 +1,6 @@
 const Sauce = require('../models/sauce')
-const fs = require('fs')
+const fs = require('fs');
+const sauce = require('../models/sauce');
 
 //Avoir tout les sauces sur l'accueil avec le verbe get
 exports.getAllSauces = (req, res, next) => {
@@ -41,12 +42,13 @@ exports.modifySauce = (req, res, next) => {
         .catch(error => res.status(400).json({ error }))
     }
     else{
-        error => res.status(403).json({ error })
+        error => res.status(403).json({ message: 'Utilisateur non autorisé' })
     }
 }
 
 //suppresion de la sauce avec le verbe delete
 exports.deleteSauce = (req, res, next) => {
+    if(req.auth.userId==Sauce.userId){
     Sauce.findOne({ _id: req.params.id })
         .then(sauce => {
             const filename = sauce.imageUrl.split('/images/')[1]
@@ -56,7 +58,11 @@ exports.deleteSauce = (req, res, next) => {
                     .catch(error => res.status(400).json({ error: error }))
             })
         })
-        .catch(error => res.status(500).json({ error }))
+        .catch(error => res.status(500).json({ error }))}
+        else{
+            error => res.status(403).json({ message: 'Utilisateur non autorisé' })
+        }
+    
 }
 
 //Like et dislike de differentes sauces
